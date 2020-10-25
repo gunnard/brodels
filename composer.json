@@ -1,0 +1,15 @@
+{
+	"name": "gunnard/hive",
+	"authors": [
+		{
+			"name": "Gunnard Engebreth",
+			"email": "gunnard@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"app\\": "./"
+		}
+	},
+	"require": {}
+}
