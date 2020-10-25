@@ -4,8 +4,8 @@
  *
  */
 
-use app\controllers\SiteController;
 namespace app\core;
+use app\controllers\SiteController;
 
 Class Router
 {
@@ -52,6 +52,9 @@ Class Router
 	Public function renderView($view, $params = []) 
 	{
 		$layoutContent = $this->layoutContent();
+		if ($params['model']) {
+			$params = $params['model'];
+		}
 		$viewContent = $this->renderOnlyView($view, $params);
 		return str_replace('{{content}}', $viewContent, $layoutContent);
 	}
@@ -68,9 +71,8 @@ Class Router
 	protected function renderOnlyview($view, $params)
 	{
 		$layout = Application::$app->controller->layout;
-			$output = file_get_contents(Application::$ROOT_DIR."/views/layouts/$layout/$view.php");
+		$output = file_get_contents(Application::$ROOT_DIR."/views/layouts/$layout/$view.php");
 		foreach ($params as $key => $value) {
-			//$$key = $value;
 			$output = str_replace("{{{$key}}}", $value, $output);
 		}
 		return $output;
